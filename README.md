@@ -32,7 +32,7 @@ Checking the DO cluster:
 
 ![alt text](image.png)
 
-## Deploy to EKS cluster using dockerhub
+## Deploy to EKS cluster using dockerhub as private repo
 1. after installing the gettext-base using the [Jenkins Dockerfile](https://github.com/jkrisch/devops-bootcamp-demo-project-11/blob/ci/cd-eks-dockerhub/Dockerfile_Jenkins_Container#L27)
 2. We can adjust the [deployment and secret files](https://github.com/jkrisch/devops-bootcamp-demo-project-11/tree/ci/cd-eks-dockerhub/kubernetes) and use env var names
 3. which we then substitute using the envsubst command in the [Jenkinsfile](https://github.com/jkrisch/devops-bootcamp-demo-project-11/blob/0ef891dd670ad470e444c71ed1dc4b871308ae1d/Jenkinsfile#L69)
@@ -40,4 +40,7 @@ Checking the DO cluster:
 6. and then use this secret in the [deployment](https://github.com/jkrisch/devops-bootcamp-demo-project-11/blob/ci/cd-eks-dockerhub/kubernetes/deployment.yaml)
 
 
-
+## Deploy to EKS cluster using ECR as private repo
+1. Would be the same just creating the secret for aws ecr
+2. adjusting the deployment yaml file (using the new secret for aws ecr)
+3. We could also make the Pipeline more generic by using an env var for the container registry which will then be used for the deployment yaml and the push process
