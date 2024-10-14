@@ -49,7 +49,8 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                    echo 'deploying docker image to EKS cluster'
+                    echo 'deploying nginx container'
+                    sh 'kubectl create deployment nginx-deployment --image=nginx'
                     
                 }
 
