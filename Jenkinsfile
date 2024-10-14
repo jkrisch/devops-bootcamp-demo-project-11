@@ -18,8 +18,8 @@ pipeline {
     IMAGE_NAME = "jaykay84/demo-app"
     IMAGE_TAG = "1.0.0."
     //Setting the aws credentials env variables 
-    AWS_SECRET = 
-    AWS_SECRET_KEY = 
+    AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY')
+    AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
    }
     stages {
         stage('build app') {
