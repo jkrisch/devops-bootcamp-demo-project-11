@@ -21,5 +21,13 @@ docker cp kubeconfig jenkins_controller:/var/jenkins_home/.kube/config
 
 ![cluster check](eks.png)
 
+## Deploy to DO cluster
+1. After deploying the cluster on digital ocean we can use the config file provided on the DO web ui
+2. But first we need to install the kubernetes cli plugin: (https://plugins.jenkins.io/kubernetes-cli/)
+3. Afterwards we create the credentials in Jenkins
+4. We use these credentials as described [here](https://plugins.jenkins.io/kubernetes-cli/)
+5. We adjust the [Jenkinsfile](https://github.com/jkrisch/devops-bootcamp-demo-project-11/blob/deploy-on-do/Jenkinsfile)
+
+Checking the DO cluster:
 
 ![alt text](image.png)
