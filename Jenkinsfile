@@ -17,9 +17,6 @@ pipeline {
    environment{
     IMAGE_NAME = "jaykay84/demo-app"
     IMAGE_TAG = "1.0.0."
-    //Setting the aws credentials env variables 
-    AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY')
-    AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
    }
     stages {
         stage('build app') {
@@ -50,7 +47,11 @@ pipeline {
             steps {
                 script {
                     echo 'deploying nginx container'
-                    sh 'kubectl create deployment nginx-deployment --image=nginx'
+                    withKubernetesConfig([
+                        credentialsId: 'do-k8s-config', serverUrl: 'https://23e43024-01f5-42c1-9d87-3d887613b150.k8s.ondigitalocean.com'
+                    ]){
+                        sh 'kubectl create deployment nginx-deployment --image=nginx'
+                    }
                     
                 }
 
