@@ -17,6 +17,9 @@ docker cp kubeconfig jenkins_controller:/var/jenkins_home/.kube/config
 
 6. Then we add the credentials for AWS on jenkins (to be able to connect to the eks cluster using the aws-iam-authenticator)
 7. Afterwards we adjust our [Jenkinsfile](./Jenkinsfile) to be able to connect and deploy to our eks cluster.
+8. Running the pipeline and checking the deployment/pod on the cluster shows the created resources:
+
+![cluster check](eks.png)
 
 
 ![alt text](image.png)
