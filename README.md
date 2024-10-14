@@ -33,7 +33,7 @@ Checking the DO cluster:
 ![alt text](image.png)
 
 ## Deploy to EKS cluster using dockerhub
-1. after installing the gettext-base (using the [Jenkins Dockerfile](https://github.com/jkrisch/devops-bootcamp-demo-project-11/blob/ci/cd-eks-dockerhub/Dockerfile_Jenkins_Container))
+1. after installing the gettext-base using the [Jenkins Dockerfile](https://github.com/jkrisch/devops-bootcamp-demo-project-11/blob/ci/cd-eks-dockerhub/Dockerfile_Jenkins_Container#L27)
 2. We can adjust the [deployment and secret files](https://github.com/jkrisch/devops-bootcamp-demo-project-11/tree/ci/cd-eks-dockerhub/kubernetes) and use env var names
 3. which we then substitute using the envsubst command in the [Jenkinsfile](https://github.com/jkrisch/devops-bootcamp-demo-project-11/blob/0ef891dd670ad470e444c71ed1dc4b871308ae1d/Jenkinsfile#L69)
 5. Afterwards we create the secret for our dockerhub
