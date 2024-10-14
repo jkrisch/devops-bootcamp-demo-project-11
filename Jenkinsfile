@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     echo 'deploying nginx container'
-                    withKubernetesConfig([
+                    withKubeConfig([
                         credentialsId: 'do-k8s-config', serverUrl: 'https://23e43024-01f5-42c1-9d87-3d887613b150.k8s.ondigitalocean.com'
                     ]){
                         sh 'kubectl create deployment nginx-deployment --image=nginx'
