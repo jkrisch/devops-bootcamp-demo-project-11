@@ -51,14 +51,10 @@ pipeline {
         stage('build image'){
             steps{
                 script{
-                    withCredentials([
-                        usernamePassword(credentialsId:'docker-login', passwordVariable: 'PASS', usernameVariable: 'USER')
-                        ]){
-                            dockerLogin(USER, PASS)
-
-                            buildImage("${CONTAINER_REGISTRY}", "java-app", "${env.TAG}")
-
-                            dockerPush("${CONTAINER_REGISTRY}", "java-app", "${env.TAG}")
+                    withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+                        sh "docker build -t ${IMAGE_NAME}:${TAG} ."
+                        sh 'echo $PASS | docker login -u $USER --password-stdin ${CONTAINER_REGISTRY}'
+                        sh "docker push ${IMAGE_NAME}:${TAG}"
                         }
                 }
             }
