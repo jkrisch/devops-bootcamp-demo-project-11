@@ -15,11 +15,13 @@ pipeline {
     }
     
    environment{
-    IMAGE_NAME = "jaykay84/demo-app"
+    AWS_ACCOUNT_ID = credentials('AWS_ACCOUNG_ID)
+    CONTAINER_REGISTRY = "${AWS_ACCOUNT_ID}.dkr.ecr.eu-central-1.amazonaws.com"
+    IMAGE_NAME = "${CONTAINER_REGISTRY}/demo-app"
     //Setting the aws credentials env variables 
     AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY')
     AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-    APP_NAME = "java-demo-app"
+    APP_NAME = "java-app"
    }
     stages {
         stage('build app') {
@@ -54,9 +56,9 @@ pipeline {
                         ]){
                             dockerLogin(USER, PASS)
 
-                            buildImage("jaykay84", "demo-app", "${env.TAG}")
+                            buildImage("${CONTAINER_REGISTRY}", "java-app", "${env.TAG}")
 
-                            dockerPush("jaykay84", "demo-app", "${env.TAG}")
+                            dockerPush("${CONTAINER_REGISTRY}", "java-app", "${env.TAG}")
                         }
                 }
             }
